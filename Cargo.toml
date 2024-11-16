@@ -1,0 +1,26 @@
+[package]
+name = "std-next"
+version = "0.0.0"
+edition = "2021"
+description = "Opinionated utilities and polyfills"
+license = "MIT"
+repository = "https://github.com/Nugine/std-next"
+readme = "README.md"
+documentation = "https://docs.rs/std-next"
+categories = ["rust-patterns"]
+keywords = ["std", "polyfill", "utility"]
+
+[lib]
+name = "stdx"
+
+[package.metadata.docs.rs]
+all-features = true
+rustdoc-args = ["--cfg", "docsrs"]
+
+[features]
+default = ["std"]
+alloc = []
+std = ["alloc"]
+unstable = []
+
+[dependencies]
