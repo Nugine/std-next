@@ -12,3 +12,4 @@ mod macros;
 
 pub mod default;
 pub mod ptr;
+pub mod sync;
