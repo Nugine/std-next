@@ -15,9 +15,12 @@ mod macros;
 
 mod sealed {
     pub trait Sealed {}
+
+    pub struct Internal {}
 }
 
 pub mod default;
+pub mod mem;
 pub mod ptr;
 pub mod str;
 
