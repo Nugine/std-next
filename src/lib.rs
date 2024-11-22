@@ -1,6 +1,7 @@
 #![deny(unsafe_code)]
 #![deny(clippy::all, clippy::pedantic, clippy::cargo)]
 #![allow(
+    clippy::inline_always,
     clippy::missing_errors_doc, // TODO
 )]
 // ---
