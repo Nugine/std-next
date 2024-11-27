@@ -21,6 +21,7 @@ mod sealed {
 }
 
 pub mod default;
+pub mod iter;
 pub mod mem;
 pub mod ptr;
 pub mod str;
