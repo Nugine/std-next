@@ -24,6 +24,7 @@ pub mod default;
 pub mod iter;
 pub mod mem;
 pub mod ptr;
+pub mod slice;
 pub mod str;
 
 #[cfg(feature = "alloc")]
