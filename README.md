@@ -13,3 +13,8 @@
 `stdx` - Opinionated utilities and polyfills.
 
 Documentation: <https://docs.rs/std-next>
+
+## Contributing
+
++ [Development Guide](./CONTRIBUTING.md)
++ [Code of Conduct](./CODE_OF_CONDUCT.md)
