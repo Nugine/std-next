@@ -1,6 +1,6 @@
 [package]
 name = "std-next"
-version = "0.1.4"
+version = "0.1.5"
 edition = "2021"
 description = "Opinionated utilities and polyfills"
 license = "MIT"
@@ -25,4 +25,4 @@ unstable = []
 
 [dependencies]
 simdutf8 = { version = "0.1.5", default-features = false }
-thiserror = "2.0.9"
+thiserror = "2.0.11"
