@@ -25,4 +25,4 @@ unstable = []
 
 [dependencies]
 simdutf8 = { version = "0.1.5", default-features = false }
-thiserror = "2.0.11"
+thiserror = "2.0.12"
