@@ -5,6 +5,13 @@ macro_rules! cfg_group {
     }
 }
 
+#[macro_export]
+macro_rules! assert_not {
+    ($expr:expr) => {
+        assert!(!$expr);
+    };
+}
+
 /// Calculates the offset of the specified field from the start of the named struct.
 #[macro_export]
 macro_rules! offset_of {
