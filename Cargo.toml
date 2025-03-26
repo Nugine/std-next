@@ -10,6 +10,14 @@ documentation = "https://docs.rs/std-next"
 categories = ["rust-patterns"]
 keywords = ["std", "polyfill", "utility"]
 
+[lints.rust]
+unsafe_code = "deny"
+
+[lints.clippy]
+all = { level = "deny", priority = -1 }
+pedantic = { level = "deny", priority = -1 }
+cargo = { level = "deny", priority = -1 }
+
 [lib]
 name = "stdx"
 
