@@ -29,4 +29,7 @@ pub mod str;
 cfg_group! {
     #[cfg_attr(docsrs, doc(cfg(feature = "alloc")))]
     pub mod string;
+
+    #[cfg_attr(docsrs, doc(cfg(feature = "alloc")))]
+    pub mod vec;
 }
