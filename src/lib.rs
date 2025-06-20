@@ -18,6 +18,7 @@ mod sealed {
     pub struct Internal {}
 }
 
+pub mod convert;
 pub mod default;
 pub mod iter;
 pub mod mem;
