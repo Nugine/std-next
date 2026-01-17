@@ -124,8 +124,7 @@ mod alloc_tests {
 
     #[test]
     fn test_iter_alloc_helpers() {
-        let mut iter = [1, 2, 3].iter();
-        let joined = iter.join_("-");
+        let joined = [1, 2, 3].iter().join_("-");
         assert_eq!(joined, "1-2-3");
 
         let mapped = iter::map_collect_vec([1, 2, 3], |value| value * 3);
