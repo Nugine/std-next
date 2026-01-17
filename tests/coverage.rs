@@ -19,14 +19,14 @@ fn test_convert_helpers() {
     let ok: u8 = u8::try_from_(10u16).expect("valid conversion");
     assert_eq!(ok, 10);
 
-    let err: Result<u8, _> = convert::try_from(300u16);
-    assert!(err.is_err());
+    let conversion_result = convert::try_from::<u16, u8>(300u16);
+    assert!(conversion_result.is_err());
 
     let ok: u8 = 8u16.try_into_().expect("valid conversion");
     assert_eq!(ok, 8);
 
-    let err: Result<u8, _> = 300u16.try_into_();
-    assert!(err.is_err());
+    let conversion_result = 300u16.try_into_::<u8>();
+    assert!(conversion_result.is_err());
 }
 
 #[test]
@@ -140,7 +140,7 @@ mod alloc_tests {
         let value = String::from_utf8_simd(b"hello".to_vec()).expect("valid utf8");
         assert_eq!(value, "hello");
 
-        let err = String::from_utf8_simd(vec![0xff, 0x80]).expect_err("invalid utf8");
+        let err = String::from_utf8_simd(vec![0xff, 0x80]).expect_err("invalid UTF-8");
         assert_eq!(err.into_bytes(), vec![0xff, 0x80]);
     }
 }
