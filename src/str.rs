@@ -32,3 +32,19 @@ impl StrExt for str {
         simdutf8::basic::from_utf8(bytes).map_err(|_| Utf8Error {})
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::StrExt;
+
+    #[test]
+    fn test_str_simd_helpers() {
+        let ascii = <str as StrExt>::from_ascii_simd(b"hello").expect("valid ascii");
+        assert_eq!(ascii, "hello");
+        assert!(<str as StrExt>::from_ascii_simd(&[0xff]).is_err());
+
+        let utf8 = <str as StrExt>::from_utf8_simd("hé".as_bytes()).expect("valid utf8");
+        assert_eq!(utf8, "hé");
+        assert!(<str as StrExt>::from_utf8_simd(&[0xff, 0xff]).is_err());
+    }
+}

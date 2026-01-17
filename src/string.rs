@@ -32,3 +32,17 @@ impl StringExt for String {
         }
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::StringExt;
+
+    #[test]
+    fn test_string_from_utf8_simd() {
+        let value = String::from_utf8_simd(b"hello".to_vec()).expect("valid utf8");
+        assert_eq!(value, "hello");
+
+        let err = String::from_utf8_simd(vec![0xff, 0x80]).expect_err("invalid UTF-8");
+        assert_eq!(err.into_bytes(), vec![0xff, 0x80]);
+    }
+}

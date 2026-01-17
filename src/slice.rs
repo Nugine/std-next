@@ -84,4 +84,16 @@ mod tests {
         assert_eq!(chunks, [[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]]);
         assert_eq!(rest, &[]);
     }
+
+    #[test]
+    fn test_get2_mut() {
+        let mut data = [1, 2, 3, 4];
+        let (left, right) = data.get2_mut(1, 3).expect("indices should be in bounds");
+        *left = 20;
+        *right = 40;
+        assert_eq!(data, [1, 20, 3, 40]);
+
+        assert!(data.get2_mut(2, 2).is_none());
+        assert!(data.get2_mut(0, 10).is_none());
+    }
 }

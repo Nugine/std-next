@@ -51,3 +51,21 @@ macro_rules! offset_of {
         OFFSET
     }};
 }
+
+#[cfg(test)]
+mod tests {
+    #[allow(unsafe_code)]
+    #[test]
+    fn test_offset_of_macro() {
+        #[repr(C)]
+        struct Sample {
+            a: u8,
+            b: u32,
+            c: u16,
+        }
+
+        assert_eq!(crate::offset_of!(Sample, a), 0);
+        assert_eq!(crate::offset_of!(Sample, b), 4);
+        assert_eq!(crate::offset_of!(Sample, c), 8);
+    }
+}

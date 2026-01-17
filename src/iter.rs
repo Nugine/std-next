@@ -71,3 +71,37 @@ where
 {
     filter_map_collect(iterable, f)
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_iter_helpers() {
+        let doubled: Vec<_> = map_collect([1, 2, 3], |value| value * 2);
+        assert_eq!(doubled, vec![2, 4, 6]);
+
+        let filtered: Vec<_> = filter_map_collect([1, 2, 3, 4], |value| {
+            (value % 2 == 0).then_some(value * 10)
+        });
+        assert_eq!(filtered, vec![20, 40]);
+    }
+}
+
+#[cfg(all(test, feature = "alloc"))]
+mod alloc_tests {
+    use super::*;
+
+    #[test]
+    fn test_iter_alloc_helpers() {
+        let joined = [1, 2, 3].iter().join_("-");
+        assert_eq!(joined, "1-2-3");
+
+        let mapped = map_collect_vec([1, 2, 3], |value| value * 3);
+        assert_eq!(mapped, vec![3, 6, 9]);
+
+        let filtered =
+            filter_map_collect_vec([1, 2, 3, 4], |value| (value % 2 == 1).then_some(value));
+        assert_eq!(filtered, vec![1, 3]);
+    }
+}
