@@ -93,6 +93,12 @@ mod tests {
         let conversion_result = try_from::<u16, u8>(300u16);
         assert!(conversion_result.is_err());
 
+        let ok: u8 = try_into(8u16).expect("valid conversion");
+        assert_eq!(ok, 8);
+
+        let conversion_result = try_into::<u16, u8>(300u16);
+        assert!(conversion_result.is_err());
+
         let ok: u8 = 8u16.try_into_().expect("valid conversion");
         assert_eq!(ok, 8);
 
