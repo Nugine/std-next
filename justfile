@@ -24,6 +24,9 @@ unstable-test:
 miri:
     cargo +nightly miri test --all-features
 
+coverage *ARGS:
+    cargo llvm-cov --all-features --html {{ARGS}}
+
 doc:
     RUSTDOCFLAGS="--cfg docsrs" cargo +nightly doc --open --no-deps --all-features
 
