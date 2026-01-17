@@ -42,3 +42,14 @@ where
 {
     core::mem::size_of::<F::Output>()
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_output_size() {
+        let size = output_size(&|a: u8, b: u16| -> u32 { u32::from(a) + u32::from(b) });
+        assert_eq!(size, core::mem::size_of::<u32>());
+    }
+}

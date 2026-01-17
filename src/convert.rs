@@ -67,3 +67,42 @@ where
 {
     T::try_into(t)
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_convert_helpers() {
+        let value: u8 = 7;
+        let from_value: u16 = from(value);
+        assert_eq!(from_value, 7);
+
+        let into_value: u16 = into(value);
+        assert_eq!(into_value, 7);
+
+        let from_ext: u16 = u16::from_(value);
+        assert_eq!(from_ext, 7);
+
+        let into_ext: u16 = value.into_();
+        assert_eq!(into_ext, 7);
+
+        let ok: u8 = u8::try_from_(10u16).expect("valid conversion");
+        assert_eq!(ok, 10);
+
+        let conversion_result = try_from::<u16, u8>(300u16);
+        assert!(conversion_result.is_err());
+
+        let ok: u8 = try_into(8u16).expect("valid conversion");
+        assert_eq!(ok, 8);
+
+        let conversion_result = try_into::<u16, u8>(300u16);
+        assert!(conversion_result.is_err());
+
+        let ok: u8 = 8u16.try_into_().expect("valid conversion");
+        assert_eq!(ok, 8);
+
+        let conversion_result = 300u16.try_into_::<u8>();
+        assert!(conversion_result.is_err());
+    }
+}
