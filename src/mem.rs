@@ -15,6 +15,7 @@ macro_rules! impl_output_size {
         {
             type Output = O;
 
+            #[cfg_attr(feature = "unstable", coverage(off))]
             fn __internal(_: Internal) {}
         }
     };
@@ -49,7 +50,9 @@ mod tests {
 
     #[test]
     fn test_output_size() {
-        let size = output_size(&|a: u8, b: u16| -> u32 { u32::from(a) + u32::from(b) });
+        let f = |a: u8, b: u16| -> u32 { u32::from(a) + u32::from(b) };
+        let size = output_size(&f);
         assert_eq!(size, core::mem::size_of::<u32>());
+        assert_eq!(f(1, 2), 3);
     }
 }

@@ -39,21 +39,21 @@ mod tests {
     fn test_ptr_helpers() {
         let value = 1u32;
         let const_ptr = cast_ptr::<u32, u32>(&value);
-        assert_eq!(const_ptr, &value as *const u32);
+        assert_eq!(const_ptr, std::ptr::addr_of!(value));
 
         let mut value_mut = 2u32;
         let mut_ptr = cast_ptr_mut::<u32, u32>(&mut value_mut);
-        assert_eq!(mut_ptr, &mut value_mut as *mut u32);
+        assert_eq!(mut_ptr, std::ptr::addr_of_mut!(value_mut));
 
         let mut data = [10u32, 20, 30];
         let data_ptr = data.as_mut_ptr();
         unsafe {
             write_at(data_ptr, 1, 99);
-            let read_value = read_at(data_ptr as *const u32, 1);
+            let read_value = read_at(data_ptr.cast_const(), 1);
             assert_eq!(read_value, 99);
 
             cast_write_at::<u32, u32>(data_ptr, 2, 77);
-            let read_value = cast_read_at::<u32, u32>(data_ptr as *const u32, 2);
+            let read_value = cast_read_at::<u32, u32>(data_ptr.cast_const(), 2);
             assert_eq!(read_value, 77);
         }
         assert_eq!(data, [10, 99, 77]);

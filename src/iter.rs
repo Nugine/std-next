@@ -96,6 +96,9 @@ mod alloc_tests {
         let joined = [1, 2, 3].iter().join_("-");
         assert_eq!(joined, "1-2-3");
 
+        let empty_joined = std::iter::empty::<i32>().join_("-");
+        assert_eq!(empty_joined, "");
+
         let mapped = map_collect_vec([1, 2, 3], |value| value * 3);
         assert_eq!(mapped, vec![3, 6, 9]);
 
