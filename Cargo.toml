@@ -2,6 +2,7 @@
 name = "std-next"
 version = "0.1.9"
 edition = "2021"
+rust-version = "1.77.0"
 description = "Opinionated utilities and polyfills"
 license = "MIT"
 repository = "https://github.com/Nugine/std-next"
